@@ -983,6 +983,15 @@ return baseclass.extend({
       const parentContainer = designField.closest(".cbi-section-node");
       if (!parentContainer) return false;
 
+      // Newer LuCI versions render the built-in "Table Filters" field after
+      // the design selector. Keep Proton custom settings after that field when
+      // present, but gracefully fall back for older LuCI builds where it does
+      // not exist.
+      const tableFiltersField = parentContainer.querySelector(
+        '[data-name="_tablefilters"]',
+      );
+      const insertAfterField = tableFiltersField || designField;
+
       // Load saved settings
       const defaultZoom = "100";
       const settings = {
@@ -1308,8 +1317,8 @@ return baseclass.extend({
         </div>
       `;
 
-      // Insert after the design field
-      designField.insertAdjacentHTML("afterend", settingsHTML);
+      // Insert after the last built-in LuCI field in this group.
+      insertAfterField.insertAdjacentHTML("afterend", settingsHTML);
 
       // Insert backup section after settings
       const settingsBlock = document.getElementById("proton-theme-settings");

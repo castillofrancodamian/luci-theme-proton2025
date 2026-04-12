@@ -99,7 +99,7 @@
 					autocomplete="current-password" />
 			</div>
 
-			<button type="submit">{{ _('Login') }}</button>
+			<button type="submit">{{ _('Log in') }}</button>
 		</form>
 	</div>
 </div>

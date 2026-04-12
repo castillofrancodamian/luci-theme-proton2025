@@ -108,6 +108,17 @@ Or download manually from [GitHub Releases](https://github.com/ChesterGoodiny/lu
 - ✅ Proper package management (easy updates/removal)
 - ✅ Dependency tracking
 
+### Install on OpenWrt builds with apk
+
+**On your OpenWrt router** (via SSH), download the APK package from the latest release and install it:
+
+```bash
+wget https://github.com/ChesterGoodiny/luci-theme-proton2025/releases/latest/download/luci-theme-proton2025_*.apk
+apk add --allow-untrusted luci-theme-proton2025_*.apk
+```
+
+> 💡 Note: this only works with a valid OpenWrt `.apk` produced by the OpenWrt SDK/buildroot.
+
 ### Quick Install (Testing Only)
 
 **On your OpenWrt router** (via SSH):
@@ -130,7 +141,12 @@ make menuconfig  # LuCI -> Themes -> luci-theme-proton2025
 make package/luci-theme-proton2025/compile V=s
 ```
 
-The compiled `.ipk` file will be in `bin/packages/*/luci/`
+The compiled package will be in `bin/packages/*/`:
+
+- `.ipk` when building with an `opkg`-based OpenWrt SDK/buildroot
+- `.apk` when building with an `apk`-based OpenWrt SDK/buildroot
+
+> ⚠️ Important: a valid OpenWrt `.apk` must be produced by the official OpenWrt SDK/buildroot. Simply packing the theme files into a `tar.gz` archive and renaming it to `.apk` does not produce a package that `apk add` can install.
 
 ## Removal
 
@@ -146,6 +162,12 @@ Or simply remove the package:
 
 ```bash
 opkg remove luci-theme-proton2025
+```
+
+For systems with `apk`:
+
+```bash
+apk del luci-theme-proton2025
 ```
 
 ### Revert to Default Theme

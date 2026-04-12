@@ -108,6 +108,17 @@ opkg install luci-theme-proton2025_*_all.ipk
 - ✅ Правильное управление пакетами (лёгкое обновление/удаление)
 - ✅ Отслеживание зависимостей
 
+### Установка на OpenWrt с apk
+
+**На вашем роутере OpenWrt** (через SSH), скачайте APK-пакет из релиза и установите его:
+
+```bash
+wget https://github.com/ChesterGoodiny/luci-theme-proton2025/releases/latest/download/luci-theme-proton2025_*.apk
+apk add --allow-untrusted luci-theme-proton2025_*.apk
+```
+
+> 💡 Примечание: этот способ работает только с корректно собранным OpenWrt `.apk`, полученным через OpenWrt SDK/buildroot.
+
 ### Быстрая установка (Только для тестирования)
 
 **На вашем роутере OpenWrt** (через SSH):
@@ -130,7 +141,12 @@ make menuconfig  # LuCI -> Themes -> luci-theme-proton2025
 make package/luci-theme-proton2025/compile V=s
 ```
 
-Скомпилированный `.ipk` файл будет в `bin/packages/*/luci/`
+Скомпилированный пакет будет в `bin/packages/*/`:
+
+- `.ipk` — при сборке через SDK/buildroot с `opkg`
+- `.apk` — при сборке через SDK/buildroot с `apk`
+
+> ⚠️ Важно: корректный OpenWrt `.apk` должен собираться штатно через OpenWrt SDK/buildroot. Простая упаковка файлов темы в `tar.gz` с расширением `.apk` не создаёт валидный пакет для `apk add`.
 
 ## Удаление
 
@@ -146,6 +162,12 @@ chmod +x uninstall.sh
 
 ```bash
 opkg remove luci-theme-proton2025
+```
+
+Для систем с `apk`:
+
+```bash
+apk del luci-theme-proton2025
 ```
 
 ### Откат на стандартную тему
