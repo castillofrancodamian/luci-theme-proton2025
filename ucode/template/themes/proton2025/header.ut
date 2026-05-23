@@ -214,6 +214,7 @@ body {
 <script src="{{ media }}/custom-pages.js" defer></script>
 <script src="{{ media }}/search-proton2025-data.js" defer></script>
 <script src="{{ media }}/search-proton2025.js" defer></script>
+<script src="{{ media }}/login-animation-settings.js"></script>
 
 <script>
 (function() {
@@ -403,7 +404,6 @@ body {
 {% if (css): %}
 <style title="text/css">{{ css }}</style>
 {% endif %}
-	<script src="{{ media }}/login-animation-settings.js"></script>
 </head>
 {% let __page = join('-', ctx.request_path); %}
 {% if (!__page && ctx.dispatch_path): __page = join('-', ctx.dispatch_path); endif %}
