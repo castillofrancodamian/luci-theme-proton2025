@@ -3288,6 +3288,17 @@ table.assoclist td[data-title="Скорость приёма / отправки"
 #cbi-network-interface .ifacebox-body {
     padding: 10px 12px;
     color: var(--proton-fg-secondary);
+    /* Centre the whole stack — the device icon row (incl. the bridge
+       members wrapped in "( … )") and the device name underneath —
+       relative to the box instead of letting it flush left. */
+    text-align: center;
+}
+
+/* Vertically centre the interface icons on the text line so the
+   "( )" brackets around bridge members line up with the icons
+   instead of sitting on the baseline. */
+#cbi-network-interface .ifacebox-body img {
+    vertical-align: middle;
 }
 
 #cbi-network-interface .ifacebox-body small {
